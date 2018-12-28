@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!--
+    参考サイト：https://kita-note.com/leaflet-tutorial-2
+-->
+<head>
+    <title>Leaflet入門2 地図に多角形を描画する</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    <style type="text/css">
+        #mapid {
+            height: 400px;
+            width: 600px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([35.7102, 139.8132], 15);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+        }).addTo(mymap);
+
+        // 多角形を描画するには、L.polygonを使用する
+        // 以下のように各地点の緯度経度を配列で指定する
+        var triangle = L.polygon([
+            [35.7165, 139.8115],
+            [35.7156, 139.8102],
+            [35.7143, 139.8121],
+        ]).addTo(mymap);
+        
+        // デフォルト色(青)パターン
+        /*
+        var quadrangle = L.polygon([
+            [35.7135, 139.8128],
+            [35.7125, 139.811],
+            [35.7112, 139.812],
+            [35.7124, 139.8143]
+        ]).addTo(mymap);
+        */
+        
+        var quadrangle = L.polygon([
+            [35.7135, 139.8128],
+            [35.7125, 139.811],
+            [35.7112, 139.812],
+            [35.7124, 139.8143]
+        ],
+        // 描画図形塗りつぶし色指定(カラー名、16進表記、10進表記対応)
+        {
+            // 描画する線の色
+            color: 'rgb(0,128,0)',
+            // 塗りつぶしの色指定
+            fillColor: '#25dc25',
+            // 塗りつぶし不透明度(0に近いほど透明)
+            fillOpacity: 0.5,
+        }).addTo(mymap);
+        
+        
+
+    </script>
+</body>
+
+</html>
